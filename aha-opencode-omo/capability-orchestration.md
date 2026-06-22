@@ -116,12 +116,12 @@ Re-orchestration must be transparent. The agent must tell the user what changed 
 
 The tier table is a coordinate reference for judging orchestration granularity and collaboration complexity. It is not a user-facing label, not a fixed escalation ladder, and not a substitute for capability discovery.
 
-| Tier | Orchestration Granularity | Collaboration Complexity | 人工确认 |
+| Tier | Orchestration Granularity | Collaboration Complexity | Human Confirmation |
 |---|---|---|---|
-| Hyper | 大量 subagent + worktree | 复杂并行/跨域集成 | 二次确认 |
-| Full | 多 subagent | 自主循环/并行/持久 | 无 |
-| Standard | 少量 subagent | 有计划串行/简单并行 | 无 |
-| Base | 最少 subagent | 最简单协作 | 无 |
+| Hyper | Large subagent fan-out + worktree | Complex parallel / cross-domain integration | Secondary confirmation |
+| Full | Multiple subagents | Autonomous loops / parallel / persistent | None |
+| Standard | Few subagents | Planned serial / simple parallel | None |
+| Base | Minimal subagents | Simplest collaboration | None |
 
 Complexity judgment should start from Hyper and converge downward:
 

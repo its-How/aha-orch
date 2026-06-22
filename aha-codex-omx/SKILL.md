@@ -7,12 +7,12 @@ description: "Codex+OMX optimized capability orchestration skill. Use this when 
 
 ## What This Mode Activates
 
-Full-delegation capability orchestration for Codex with OMX installed. This skill enables the agent to autonomously discover, select, combine, and reselect available capability surfaces (native runtime, enhancement layer, skill, MCP, command, subagent, worktree) to build the lowest-sufficient execution route for each task unit.
+Full-delegation capability orchestration for [Codex CLI](https://github.com/openai/codex) with [oh-my-codex (OMX)](https://github.com/Yeachan-Heo/oh-my-codex) installed. This skill enables the agent to autonomously discover, select, combine, and reselect available capability surfaces (native runtime, enhancement layer, skill, MCP, command, subagent, worktree) to build the lowest-sufficient execution route for each task unit.
 
 ## Pre-Check
 
 1. Verify OMX is installed: `omx --version`
-2. Confirm runtime family: Codex (not OpenCode, not OMO)
+2. Confirm runtime family: Codex (not [OpenCode](https://github.com/sst/opencode), not [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent))
 3. **Wrong-runtime guard**: If you are in OpenCode with OMO, use `aha-opencode-omo` instead. This skill is for Codex+OMX only.
 4. If OMX is not detected, proceed with native Codex capabilities and state the limitation transparently.
 

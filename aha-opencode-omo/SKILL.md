@@ -7,12 +7,12 @@ description: "OpenCode+OMO optimized capability orchestration skill. Use this wh
 
 ## What This Mode Activates
 
-Full-delegation capability orchestration for OpenCode with OMO installed. This skill enables the agent to autonomously discover, select, combine, and reselect available capability surfaces (native runtime, enhancement layer, skill, MCP, command, subagent, worktree) to build the lowest-sufficient execution route for each task unit.
+Full-delegation capability orchestration for [OpenCode](https://github.com/sst/opencode) with [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent) installed. This skill enables the agent to autonomously discover, select, combine, and reselect available capability surfaces (native runtime, enhancement layer, skill, MCP, command, subagent, worktree) to build the lowest-sufficient execution route for each task unit.
 
 ## Pre-Check
 
 1. Verify OMO is installed: `opencode agent list`
-2. Confirm runtime family: OpenCode (not Codex, not OMX)
+2. Confirm runtime family: OpenCode (not [Codex CLI](https://github.com/openai/codex), not [oh-my-codex (OMX)](https://github.com/Yeachan-Heo/oh-my-codex))
 3. **Wrong-runtime guard**: If you are in Codex with OMX, use `aha-codex-omx` instead. This skill is for OpenCode+OMO only.
 4. If OMO is not detected, proceed with native OpenCode capabilities and state the limitation transparently.
 

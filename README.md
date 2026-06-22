@@ -13,8 +13,8 @@ It is a decision contract, not an SOP. Agents apply the framework across native 
 | Skill | Purpose | Runtime |
 |---|---|---|
 | `aha-orch-xx` | Runtime-agnostic complete skill | Any |
-| `aha-codex-omx` | Codex + OMX optimized | Codex with oh-my-codex |
-| `aha-opencode-omo` | OpenCode + OMO optimized | OpenCode with oh-my-opencode |
+| `aha-codex-omx` | [Codex CLI](https://github.com/openai/codex) + [oh-my-codex (OMX)](https://github.com/Yeachan-Heo/oh-my-codex) optimized | Codex with oh-my-codex |
+| `aha-opencode-omo` | [OpenCode](https://github.com/sst/opencode) + [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent) optimized | OpenCode with oh-my-openagent |
 
 Each skill package contains the shared framework document (`capability-orchestration.md`) plus runtime-specific implementation guidance.
 

@@ -24,43 +24,9 @@ Run discovery on every orchestration pass. Capability surfaces change across ses
 2. **Secondary scan**: use `librarian` to query installed skills, MCPs, commands, validators, and native subagent surfaces
 3. **Permission envelope**: determine read-only vs write, external-write, network, approval policy, and destructive-action limits
 
-Each discovered capability must include:
-- Type (skill / MCP / command / validator / subagent / native / other)
-- Name
-- Category (planning / exploration / implementation / review / verification / browser / external API / context / handoff / rollback / utility)
-- Status (available / unavailable / configured / detected / uncertain / failed / disabled / requires confirmation)
-- Description
-- Trigger conditions (when to use and when to avoid)
-- Risk level (low / medium / high)
+See `./capability-orchestration.md` for the 7-field discovery schema.
 
 If discovery fails, transparently tell the user, fall back to built-in reference knowledge, mark it as possibly outdated, and invite the user to provide current capability information. Do not overclaim actual availability.
-
-## Capability Orchestration
-
-Build the execution route from the discovered capability surface and task shape. Reference `./capability-orchestration.md` for the full framework.
-
-- Judge complexity from the highest granularity downward, then converge to the lowest sufficient route
-- Use the tier table as a coordinate reference, not as user-facing status text
-- Mix capabilities across surfaces when mixed orchestration is lower-risk or more complete than a single surface
-- Trigger secondary confirmation for: large subagent fan-out, worktree usage, cross-domain integration, and high execution cost
-
-## Orchestration Transparency
-
-Keep the full chain transparent: initial orchestration, execution-relevant capability choices, gap-triggered re-orchestration, and Out-of-Session recommendations.
-
-Disclose to the user before meaningful execution when the route materially changes collaboration shape, risk, cost, or confirmation needs. Provide capability-use guidance; do not expose tier names as the explanation.
-
-## Re-orchestration on Gap
-
-When execution reveals a capability gap, constraint conflict, failed validation, unavailable surface, context overload, or permission mismatch, re-orchestrate instead of silently degrading.
-
-Transparently tell the user what changed and why, but do not announce tier names as the explanation.
-
-## Out-of-Session
-
-Recommend Out-of-Session when the current session is a poor container: polluted context, different permission scope needed, different project boundary required, or a handoff artifact is needed before continuation.
-
-Create a handoff file with: Reason, Complete Prompt, Task Background, Suggested Runtime / Enhancement Layer, Related File Paths, and Context Summary. Do not include credentials, tokens, cookies, session material, provider state, live state, or account state in handoff material.
 
 ## Do NOT Use This Mode For
 
@@ -68,16 +34,10 @@ Create a handoff file with: Reason, Complete Prompt, Task Background, Suggested 
 - Tasks that require explicit human confirmation at every step
 - Environments where OMO is not installed and cannot be installed
 
-## Cost Awareness
-
-- Prefer the lowest sufficient capability surface for each unit
-- Avoid large subagent fan-out for tasks that do not benefit from parallel execution
-- Do not treat capability activation as success; verify task outcome evidence
-
 ## Rollback / Deactivation
 
 To deactivate: stop using OMO-specific capabilities and fall back to native OpenCode. No persistent state is maintained by this skill.
 
 ## Reference
 
-- `./capability-orchestration.md` — full capability orchestration framework
+- Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.

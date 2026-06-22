@@ -112,6 +112,19 @@ Gap-triggered re-orchestration should answer:
 
 Re-orchestration must be transparent. The agent must tell the user what changed and why, but must not announce tier names as the explanation.
 
+## Re-Orchestration Thought Path
+
+When a gap appears, the agent should reason through this path before acting:
+
+1. Which route should handle the gap: current session or Out-of-Session bypass?
+2. If current session is enough, how should capabilities be recombined?
+3. If no single coordinate fits, should the agent mix capabilities from multiple coordinates or choose one dominant shape?
+4. What must be told to the user in plain language before proceeding?
+
+Current-session handling is appropriate when the gap is local, reversible and within the current permission boundary. Out-of-Session bypass is appropriate when clean context, different permissions or a different project boundary is necessary and explicitly allowed.
+
+The agent should not describe this as a downgrade. It is re-orchestration around observed constraints.
+
 ## Tier Coordinate Reference
 
 The tier table is a coordinate reference for judging orchestration granularity and collaboration complexity. It is not a user-facing label, not a fixed escalation ladder, and not a substitute for capability discovery.

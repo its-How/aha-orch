@@ -11,16 +11,7 @@ Use this skill when no runtime-specific skill is available. If aha-codex-omx or 
 
 # Pre-Check: Runtime Detection
 
-Before planning capability use, detect the active execution context:
-
-- Runtime family and invocation mode.
-- Active enhancement layer, if any.
-- Runtime version and enhancement version when version-sensitive behavior affects capability availability.
-- Current permission envelope: read-only, workspace-write, external-write, network availability, approval policy, and destructive-action limits.
-- Available collaboration surfaces: native subagent, configured subagent, skill, command, MCP, plugin, worktree, background task, validator, shell, browser, or equivalent runtime-neutral capability class.
-- Explicit user invocation signals that change orchestration expectations.
-
-If detection fails, proceed with the safest native capability assumption, state the uncertainty, and avoid claiming unavailable surfaces.
+Before planning capability use, detect the active execution context: runtime family and invocation mode; active enhancement layer, if any; runtime version and enhancement version when version-sensitive behavior affects capability availability; current permission envelope (read-only, workspace-write, external-write, network availability, approval policy, destructive-action limits); available collaboration surfaces (native subagent, configured subagent, skill, command, MCP, plugin, worktree, background task, validator, shell, browser, or equivalent runtime-neutral capability class); and explicit user invocation signals that change orchestration expectations. If detection fails, proceed with the safest native capability assumption, state the uncertainty, and avoid claiming unavailable surfaces.
 
 # Capability Discovery
 
@@ -36,63 +27,27 @@ Each discovered capability record must include at minimum:
 6. **Trigger Conditions** — When to consider using it and when to avoid it.
 7. **Risk Level** — Low, medium, or high, based on permission surface, external side effects, credential/provider/browser/live exposure, state mutation, cost, and reversibility.
 
-Run discovery every time because capability surfaces can change across sessions, projects, runtime versions, permission modes, and enhancement activation states.
-
-If discovery fails, transparently tell the user that live capability discovery failed, may use built-in reference knowledge as a fallback, mark it as possibly outdated, and invite the user to provide current capability information. Do not overclaim actual availability.
+Run discovery every time because capability surfaces can change across sessions, projects, runtime versions, permission modes, and enhancement activation states. If discovery fails, transparently tell the user that live capability discovery failed, may use built-in reference knowledge as a fallback, mark it as possibly outdated, and invite the user to provide current capability information. Do not overclaim actual availability.
 
 # Capability Orchestration
 
 Build an orchestration plan from the discovered capability surface and task shape.
 
-Determine:
-
-- Goal decomposition: smallest complete units, dependency order, and validation gates.
-- Capability convergence: which surfaces are sufficient, redundant, risky, unavailable, or better held in reserve.
-- Orchestration granularity: single-agent, few subagents, multiple subagents, large fan-out, worktree-backed lanes, or external handoff.
-- Collaboration complexity: simple serial work, planned serial work, simple parallel work, autonomous loops, persistent execution, cross-domain integration, or high-cost parallel integration.
-- Confirmation triggers: whether orchestration features require secondary confirmation before execution.
-- Transparency payload: what capability route will be used, what is intentionally not used, and what the user can request if they want a different capability route.
-
-Judge orchestration complexity from the highest complexity downward, then converge to the lowest sufficient route. The tier table is a coordinate reference, not a user-facing label. See `./capability-orchestration.md` for the full framework.
-
-Mix capabilities across native runtime, enhancement layer, skill, MCP, command, subagent, and worktree surfaces when mixed orchestration is lower-risk or more complete than choosing a single surface.
+Determine: goal decomposition (smallest complete units, dependency order, validation gates); capability convergence (which surfaces are sufficient, redundant, risky, unavailable, or better held in reserve); orchestration granularity (single-agent, few subagents, multiple subagents, large fan-out, worktree-backed lanes, or external handoff); collaboration complexity (simple serial work, planned serial work, simple parallel work, autonomous loops, persistent execution, cross-domain integration, or high-cost parallel integration); confirmation triggers (whether orchestration features require secondary confirmation before execution); and transparency payload (what capability route will be used, what is intentionally not used, and what the user can request if they want a different capability route). Judge orchestration complexity from the highest complexity downward, then converge to the lowest sufficient route. The tier table is a coordinate reference, not a user-facing label. See `./capability-orchestration.md` for the full framework. Mix capabilities across native runtime, enhancement layer, skill, MCP, command, subagent, and worktree surfaces when mixed orchestration is lower-risk or more complete than choosing a single surface.
 
 # Orchestration Transparency
 
-Keep the full orchestration chain transparent across initial orchestration and re-orchestration.
-
-Tell the user:
-
-- Which capability classes will be used.
-- Which tempting capability classes are skipped and why.
-- What the user can request if they want more parallelism, less autonomy, a different runtime container, or stricter verification.
-- What requires secondary confirmation and which orchestration features triggered it.
-- How execution success will be verified.
-
-Do not use tier names as the primary user-facing explanation. Say what will happen, not the coordinate label.
+Keep the full orchestration chain transparent across initial orchestration and re-orchestration. Tell the user: which capability classes will be used; which tempting capability classes are skipped and why; what the user can request if they want more parallelism, less autonomy, a different runtime container, or stricter verification; what requires secondary confirmation and which orchestration features triggered it; and how execution success will be verified. Do not use tier names as the primary user-facing explanation. Say what will happen, not the coordinate label.
 
 # Re-orchestration on Gap
 
-When execution reveals a capability gap, constraint conflict, failed validation, unavailable surface, context overload, or permission mismatch, re-orchestrate instead of silently degrading.
-
-Answer:
-
-- Which route failed or became insufficient.
-- Which gap class appeared: missing capability, unsafe capability, failed capability, stale discovery, permission limit, context limit, validation failure, or cross-domain mismatch.
-- Which route is next: converge downward, mix capabilities, select a different capability class, request secondary confirmation, or recommend Out-of-Session.
-- How the new route will be orchestrated.
-- Whether capability mixing or single-route selection is safer and why.
-- What the user needs to know: changed capability route, changed risk/cost, changed validation path, and any capability-use instruction.
-
-Be transparent. Tell the user what changed and why, but do not announce tier names as the explanation.
+When execution reveals a capability gap, constraint conflict, failed validation, unavailable surface, context overload, or permission mismatch, re-orchestrate instead of silently degrading. Answer: which route failed or became insufficient; which gap class appeared (missing capability, unsafe capability, failed capability, stale discovery, permission limit, context limit, validation failure, or cross-domain mismatch); which route is next (converge downward, mix capabilities, select a different capability class, request secondary confirmation, or recommend Out-of-Session); how the new route will be orchestrated; whether capability mixing or single-route selection is safer and why; and what the user needs to know (changed capability route, changed risk/cost, changed validation path, and any capability-use instruction). Be transparent. Tell the user what changed and why, but do not announce tier names as the explanation.
 
 # Out-of-Session
 
 Recommend Out-of-Session when the current session is a poor execution container: clean context is materially better, different permission scope is needed, different project boundary is required, or a handoff artifact is needed before another container continues.
 
-When recommending Out-of-Session, create or request permission to create a handoff file with these fields: Reason, Complete Prompt, Task Background, Suggested Runtime / Enhancement Layer, Related File Paths, and Context Summary.
-
-Place the handoff file in a workspace temporary directory, `~/tmp/`, or `/tmp/`. In a read-only environment, request write permission; if denied, output the handoff content inline.
+When recommending Out-of-Session, create or request permission to create a handoff file with these fields: Reason, Complete Prompt, Task Background, Suggested Runtime / Enhancement Layer, Related File Paths, and Context Summary. Place the handoff file in a workspace temporary directory, `~/tmp/`, or `/tmp/`. In a read-only environment, request write permission; if denied, output the handoff content inline.
 
 Out-of-Session material must not include credentials, tokens, cookies, browser session material, provider state, live state, account state, or equivalent secrets.
 

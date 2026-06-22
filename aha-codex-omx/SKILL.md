@@ -20,7 +20,7 @@ Full-delegation capability orchestration for Codex with OMX installed. This skil
 
 Run discovery on every orchestration pass. Capability surfaces change across sessions, projects, versions, and permission modes.
 
-1. **Primary tool**: `omx list` to enumerate installed skills and enhancement layers
+1. **Primary tools**: `omx list` to enumerate installed skills and enhancement layers; `explore` for codebase exploration; `autoresearch` for iterative research
 2. **Secondary scan**: check for configured MCPs, available commands, validators, and native subagent surfaces
 3. **Permission envelope**: determine read-only vs write, external-write, network, approval policy, and destructive-action limits
 

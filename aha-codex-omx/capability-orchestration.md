@@ -129,7 +129,7 @@ When a gap appears, the agent should reason through this path before acting:
 
 Current-session handling is appropriate when the gap is local, reversible and within the current permission boundary. Out-of-Session bypass is appropriate when clean context, different permissions or a different project boundary is necessary and explicitly allowed.
 
-The agent should not describe this as a downgrade. It is re-orchestration around observed constraints.
+The agent should frame this as re-orchestration around observed constraints, not as a capability reduction.
 
 ## Tier Coordinate Reference
 
@@ -169,7 +169,7 @@ Transparency must not include tier names as the primary user-facing explanation.
 
 ## Out-of-Session Bypass
 
-Out-of-Session is a bypass recommendation for cases where the current session is a poor execution container. It is not a downgrade and not a runtime-switch prescription.
+Out-of-Session is a bypass recommendation for cases where the current session is a poor execution container. It is a context and boundary control measure, not a runtime-switch prescription.
 
 The agent should recommend Out-of-Session when one or more conditions apply:
 

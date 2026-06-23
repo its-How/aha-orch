@@ -45,6 +45,8 @@ Runtime Detection must stay runtime-neutral in this source file. Implementations
 
 If detection fails at the binary level (enhancement layer not installed), the agent should proceed with the safest native capability assumption, state the uncertainty, and avoid claiming unavailable surfaces. If detection fails at a specific surface level only, the agent should use the enhancement layer's other available surfaces and state which surface was skipped.
 
+**Enhancement layer is optional.** The native route remains valid when it is sufficient or when the enhancement layer is absent. Multi-level detection (binary, CLI, interactive bridge, feature-specific surface) determines which specific surfaces are available. The agent must skip only unavailable surfaces and must not abandon all enhancement surfaces on a partial failure.
+
 ### 2. Capability Discovery
 
 Pull the full capability surface for the current runtime context on every orchestration pass. Discovery must include native capability plus any active enhancement layer, skill, MCP, command, validator, and collaboration surfaces available to the session.
@@ -81,6 +83,8 @@ The agent should determine:
 - Transparency payload: what capability route will be used, what is intentionally not used, and what the user can say if they want a different capability route.
 
 Initial orchestration must be disclosed to the user before meaningful execution when the route materially changes collaboration shape, risk, cost, or confirmation needs. The disclosure should provide capability-use guidance, but must not expose the tier name as the user-facing explanation.
+
+**Goal and startline anchor.** At initial orchestration, the agent must state the goal, the startline (current state and known constraints), and the validation path. During re-orchestration, the agent must reference the original goal and startline to prevent drift. In Out-of-Session handoff, the goal and startline must be carried forward. Normal progress updates only need a short reference to the original goal and startline.
 
 When the current session is not the right container for the task, the agent may recommend an Out-of-Session path instead of forcing execution into a poor context.
 
@@ -159,6 +163,7 @@ Transparency must include:
 - User guidance: what the user can request if they want more parallelism, less autonomy, a different runtime container, or stricter verification.
 - Risk and confirmation: what requires secondary confirmation and which orchestration features triggered it.
 - Validation path: how execution success will be verified.
+- Compact wording: disclosures must be short; do not narrate internal reasoning; do not expose tier names by default.
 
 Transparency must not include tier names as the primary user-facing explanation. Say what will happen, not the tier label.
 

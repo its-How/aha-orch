@@ -30,6 +30,6 @@ To deactivate this skill, stop applying the orchestration framework. If the runt
 ## Source & Upgrade
 
 - **Repository**: https://github.com/its-How/aha-orch
-- **Note**: This skill is part of the aha-orch multi-skill repository (contains aha-codex-omx, aha-opencode-omo, aha-orch-xx).
+- **Note**: This skill is part of the aha-orch multi-skill repository (contains aha-codex-omx, aha-opencode-omo, aha-orch-xx, aha-claudecode-omc).
 - **Upgrade**: Run `git pull` in the aha-orch repo, or re-run `npx skills add its-how/aha-orch` to get the latest version.
 - **Uninstall**: Delete the skill directory (e.g., `aha-orch-xx/`) from your skills path.

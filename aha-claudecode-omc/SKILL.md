@@ -23,7 +23,7 @@ Run detection at three levels. Do not collapse a partial failure into a full fal
 4. Confirm runtime family: Claude Code (not [Codex CLI](https://github.com/openai/codex), not [OpenCode](https://github.com/sst/opencode), not [oh-my-codex (OMX)](https://github.com/Yeachan-Heo/oh-my-codex), not [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent))
 5. **Wrong-runtime guard**: If you are in Codex with OMX, use `aha-codex-omx` instead. If you are in OpenCode with OMO, use `aha-opencode-omo` instead. This skill is for Claude Code+OMC only.
 6. **Fallback rule**: If L1 fails (OMC not installed), proceed with native Claude Code capabilities and state the limitation transparently. If L1 passes but L2 or L3 fail, do not fall back to native Claude Code — only skip the specific unavailable OMC surface and continue using available OMC agent surfaces.
-7. **Install reference**: If OMC is not installed, the install command is: `claude plugin marketplace add Yeachan-Heo/oh-my-claudecode` — verify against the official OMC repo before use. This is a reference hint, not an action.
+7. **Install reference**: If OMC is not installed, see the Reference section below for the install command. This skill does not install OMC.
 
 ## Capability Discovery
 

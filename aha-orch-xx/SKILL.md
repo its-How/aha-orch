@@ -1,6 +1,8 @@
 ---
 name: aha-orch-xx
 description: "Runtime-agnostic capability orchestration skill. Activates full delegation mode with capability discovery and task-driven orchestration. Use this to maximize runtime + enhancement layer capabilities. If you have a runtime-specific skill (aha-codex-omx / aha-opencode-omo), prefer that instead."
+metadata:
+  repository: https://github.com/its-How/aha-orch
 ---
 
 # What This Skill Activates
@@ -24,3 +26,10 @@ To deactivate this skill, stop applying the orchestration framework. If the runt
 
 - Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for runtime detection, capability discovery fields, orchestration, transparency, re-orchestration, out-of-session, and cost awareness.
 - If aha-codex-omx or aha-opencode-omo is available and matches the active runtime, prefer that runtime-specific skill instead.
+
+## Source & Upgrade
+
+- **Repository**: https://github.com/its-How/aha-orch
+- **Note**: This skill is part of the aha-orch multi-skill repository (contains aha-codex-omx, aha-opencode-omo, aha-orch-xx).
+- **Upgrade**: Run `git pull` in the aha-orch repo, or re-run `npx skills add its-how/aha-orch` to get the latest version.
+- **Uninstall**: Delete the skill directory (e.g., `aha-orch-xx/`) from your skills path.

@@ -1,6 +1,8 @@
 ---
 name: aha-codex-omx
 description: "Codex+OMX optimized capability orchestration skill. Use this when in Codex with OMX installed. Activates full delegation mode with OMX-specific capability discovery and task-driven orchestration."
+metadata:
+  repository: https://github.com/its-How/aha-orch
 ---
 
 # aha-codex-omx
@@ -45,3 +47,10 @@ To deactivate: stop using OMX-specific capabilities and re-orchestrate to native
 ## Reference
 
 - Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.
+
+## Source & Upgrade
+
+- **Repository**: https://github.com/its-How/aha-orch
+- **Note**: This skill is part of the aha-orch multi-skill repository (contains aha-codex-omx, aha-opencode-omo, aha-orch-xx).
+- **Upgrade**: Run `git pull` in the aha-orch repo, or re-run `npx skills add its-how/aha-orch` to get the latest version.
+- **Uninstall**: Delete the skill directory (e.g., `aha-codex-omx/`) from your skills path.

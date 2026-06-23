@@ -20,11 +20,33 @@ Each skill package contains the shared framework document (`capability-orchestra
 
 ## Installation
 
+### Option 1: skills.sh
+
+```bash
+# Install all 3 skills
+npx skills add its-how/aha-orch
+
+# Or install a specific skill
+npx skills add its-how/aha-orch --skill aha-codex-omx
+npx skills add its-how/aha-orch --skill aha-opencode-omo
+npx skills add its-how/aha-orch --skill aha-orch-xx
+```
+
+### Option 2: ClawHub
+
+```bash
+clawhub install aha-codex-omx
+clawhub install aha-opencode-omo
+clawhub install aha-orch-xx
+```
+
+### Option 3: Manual copy
+
 Copy the desired skill directory into your runtime's skills path:
 
-- **Codex**: copy `aha-codex-omx/` to your Codex skills directory.
-- **OpenCode**: copy `aha-opencode-omo/` to your OpenCode skills directory.
-- **Other runtimes**: copy `aha-orch-xx/` to the appropriate skills path.
+- **Codex**: copy `aha-codex-omx/` to `~/.codex/skills/` or `.agents/skills/`
+- **OpenCode**: copy `aha-opencode-omo/` to `~/.config/opencode/skills/` or `.agents/skills/`
+- **Other runtimes**: copy `aha-orch-xx/` to the appropriate skills path for your runtime
 
 ## Framework Document
 

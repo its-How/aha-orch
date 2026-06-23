@@ -1,6 +1,8 @@
 ---
 name: aha-opencode-omo
 description: "OpenCode+OMO optimized capability orchestration skill. Use this when in OpenCode with OMO installed. Activates full delegation mode with OMO-specific capability discovery and task-driven orchestration."
+metadata:
+  repository: https://github.com/its-How/aha-orch
 ---
 
 # aha-opencode-omo
@@ -45,3 +47,10 @@ To deactivate: stop using OMO-specific capabilities and re-orchestrate to native
 ## Reference
 
 - Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.
+
+## Source & Upgrade
+
+- **Repository**: https://github.com/its-How/aha-orch
+- **Note**: This skill is part of the aha-orch multi-skill repository (contains aha-codex-omx, aha-opencode-omo, aha-orch-xx).
+- **Upgrade**: Run `git pull` in the aha-orch repo, or re-run `npx skills add its-how/aha-orch` to get the latest version.
+- **Uninstall**: Delete the skill directory (e.g., `aha-opencode-omo/`) from your skills path.

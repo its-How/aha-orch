@@ -11,10 +11,14 @@ Full-delegation capability orchestration for [Codex CLI](https://github.com/open
 
 ## Pre-Check
 
-1. Verify OMX is installed: `omx --version`
-2. Confirm runtime family: Codex (not [OpenCode](https://github.com/sst/opencode), not [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent))
-3. **Wrong-runtime guard**: If you are in OpenCode with OMO, use `aha-opencode-omo` instead. This skill is for Codex+OMX only.
-4. If OMX is not detected, proceed with native Codex capabilities and state the limitation transparently.
+Run detection at three levels. Do not collapse a partial failure into a full fallback — only re-orchestrate the specific surface that is unavailable.
+
+1. **L1 Binary installed**: Verify OMX binary is installed: `omx --version`
+2. **L2 CLI surface available**: Verify core OMX CLI commands work: `omx list`, `omx exec --help`. If L2 passes, the agent may use OMX skill enumeration, exec delegation, and sparkshell throughout the session.
+3. **L3 Interactive bridge available**: Verify tmux-attached interactive bridge if the task needs `omx question` or team/question orchestration. Check whether a tmux session is attached. If L3 fails, skip `omx question` and team bridge features, but continue using L2 CLI surfaces.
+4. Confirm runtime family: Codex (not [OpenCode](https://github.com/sst/opencode), not [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent))
+5. **Wrong-runtime guard**: If you are in OpenCode with OMO, use `aha-opencode-omo` instead. This skill is for Codex+OMX only.
+6. **Fallback rule**: If L1 fails (OMX binary not installed), proceed with native Codex capabilities and state the limitation transparently. If L1 passes but L2 or L3 fail, do not fall back to native Codex — only skip the specific unavailable OMX surface and continue using available OMX CLI surfaces.
 
 ## Capability Discovery
 
@@ -36,7 +40,7 @@ If discovery fails, transparently tell the user, fall back to built-in reference
 
 ## Rollback / Deactivation
 
-To deactivate: stop using OMX-specific capabilities and fall back to native Codex. No persistent state is maintained by this skill.
+To deactivate: stop using OMX-specific capabilities and re-orchestrate to native Codex. No persistent state is maintained by this skill. Partial deactivation is valid: if only the interactive bridge is unavailable, deactivate bridge features only and keep using OMX CLI surfaces.
 
 ## Reference
 

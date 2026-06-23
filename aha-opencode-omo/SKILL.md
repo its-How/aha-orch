@@ -11,10 +11,14 @@ Full-delegation capability orchestration for [OpenCode](https://github.com/sst/o
 
 ## Pre-Check
 
-1. Verify OMO is installed: `opencode agent list`
-2. Confirm runtime family: OpenCode (not [Codex CLI](https://github.com/openai/codex), not [oh-my-codex (OMX)](https://github.com/Yeachan-Heo/oh-my-codex))
-3. **Wrong-runtime guard**: If you are in Codex with OMX, use `aha-codex-omx` instead. This skill is for OpenCode+OMO only.
-4. If OMO is not detected, proceed with native OpenCode capabilities and state the limitation transparently.
+Run detection at multiple levels. Do not collapse a partial failure into a full fallback — only re-orchestrate the specific surface that is unavailable.
+
+1. **L1 OMO installed**: Verify OMO is installed and its agent surface is parseable: `opencode agent list`
+2. **L2 Agent surfaces available**: Verify that specific OMO agents (e.g., primary and subagent entries) are listed and not empty. If L2 passes, the agent may use OMO agent delegation throughout the session.
+3. **L3 Feature surfaces available**: If the task needs a specific OMO feature (e.g., background tasks, specific agent categories), verify that feature is available. If L3 fails for a feature, skip that feature but continue using available OMO agent surfaces.
+4. Confirm runtime family: OpenCode (not [Codex CLI](https://github.com/openai/codex), not [oh-my-codex (OMX)](https://github.com/Yeachan-Heo/oh-my-codex))
+5. **Wrong-runtime guard**: If you are in Codex with OMX, use `aha-codex-omx` instead. This skill is for OpenCode+OMO only.
+6. **Fallback rule**: If L1 fails (OMO not installed), proceed with native OpenCode capabilities and state the limitation transparently. If L1 passes but L2 or L3 fail, do not fall back to native OpenCode — only skip the specific unavailable OMO surface and continue using available OMO agent surfaces.
 
 ## Capability Discovery
 
@@ -36,7 +40,7 @@ If discovery fails, transparently tell the user, fall back to built-in reference
 
 ## Rollback / Deactivation
 
-To deactivate: stop using OMO-specific capabilities and fall back to native OpenCode. No persistent state is maintained by this skill.
+To deactivate: stop using OMO-specific capabilities and re-orchestrate to native OpenCode. No persistent state is maintained by this skill. Partial deactivation is valid: if only a specific OMO feature is unavailable, deactivate that feature only and keep using available OMO agent surfaces.
 
 ## Reference
 

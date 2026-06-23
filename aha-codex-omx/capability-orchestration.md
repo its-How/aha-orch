@@ -41,7 +41,9 @@ The agent should determine:
 
 Runtime Detection must stay runtime-neutral in this source file. Implementations may define concrete commands elsewhere, but this framework only requires capability-class detection and evidence-aware version handling.
 
-If detection fails, the agent should proceed with the safest native capability assumption, state the uncertainty, and avoid claiming unavailable surfaces.
+**Multi-level capability detection**: Enhancement layers often expose multiple capability surfaces (binary installed, CLI commands, interactive bridges, feature-specific surfaces). The agent must detect at multiple levels and must not collapse a partial failure into a full fallback. If the binary is installed but a specific surface is unavailable, only skip that surface and continue using available surfaces. Do not equate "one surface unavailable" with "enhancement layer unavailable."
+
+If detection fails at the binary level (enhancement layer not installed), the agent should proceed with the safest native capability assumption, state the uncertainty, and avoid claiming unavailable surfaces. If detection fails at a specific surface level only, the agent should use the enhancement layer's other available surfaces and state which surface was skipped.
 
 ### 2. Capability Discovery
 

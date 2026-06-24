@@ -1,8 +1,11 @@
 ---
 name: aha-claudecode-omc
 description: "Claude Code+OMC optimized capability orchestration skill. Use this when in Claude Code with OMC (oh-my-claudecode) installed. Activates full delegation mode with OMC-specific capability discovery and task-driven orchestration."
+license: MIT-0
+compatibility: "Claude Code with OMC installed"
 metadata:
   repository: https://github.com/its-How/aha-orch
+  version: "1.0.0"
 ---
 
 # aha-claudecode-omc
@@ -35,7 +38,7 @@ Run discovery on every orchestration pass. Capability surfaces change across ses
 4. **Secondary scan**: check for configured MCPs, available commands, validators, and native subagent surfaces
 5. **Permission envelope**: determine read-only vs write, external-write, network, approval policy, and destructive-action limits
 
-See `./capability-orchestration.md` for the 7-field discovery schema.
+See `./references/capability-orchestration.md` for the 7-field discovery schema.
 
 If discovery fails, transparently tell the user, fall back to built-in reference knowledge, mark it as possibly outdated, and invite the user to provide current capability information. Do not overclaim actual availability.
 
@@ -58,7 +61,7 @@ If discovery fails, transparently tell the user, fall back to built-in reference
 - [OMC repository](https://github.com/Yeachan-Heo/oh-my-claudecode)
 - OMC install command: `claude plugin marketplace add Yeachan-Heo/oh-my-claudecode` (verify against official repo before use)
 - [Claude Code subagents documentation](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
-- Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.
+- Read `./references/capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.
 
 ## Source & Upgrade
 

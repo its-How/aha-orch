@@ -17,7 +17,7 @@ It is a decision contract, not an SOP. Agents apply the framework across native 
 | `aha-opencode-omo` | [OpenCode](https://github.com/sst/opencode) + [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent) optimized | OpenCode with oh-my-openagent |
 | `aha-claudecode-omc` | [Claude Code](https://github.com/anthropics/claude-code) + [oh-my-claudecode (OMC)](https://github.com/Yeachan-Heo/oh-my-claudecode) optimized | Claude Code with oh-my-claudecode |
 
-Each skill package contains the shared framework document (`capability-orchestration.md`) plus runtime-specific implementation guidance.
+Each skill package contains the shared framework document (`references/capability-orchestration.md`) plus runtime-specific implementation guidance.
 
 ## Installation
 
@@ -54,7 +54,7 @@ Copy the desired skill directory into your runtime's skills path:
 
 ## Framework Document
 
-See `capability-orchestration.md` in any skill directory for the full framework.
+See `references/capability-orchestration.md` in any skill directory for the full framework.
 
 ## License
 

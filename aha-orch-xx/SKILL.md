@@ -1,8 +1,10 @@
 ---
 name: aha-orch-xx
-description: "Runtime-agnostic capability orchestration skill. Activates full delegation mode with capability discovery and task-driven orchestration. Use this to maximize runtime + enhancement layer capabilities. If you have a runtime-specific skill (aha-codex-omx / aha-opencode-omo), prefer that instead."
+description: "Runtime-agnostic capability orchestration skill. Activates full delegation mode with capability discovery and task-driven orchestration. Use when maximizing runtime + enhancement layer capabilities. If you have a runtime-specific skill (aha-codex-omx / aha-opencode-omo), prefer that instead."
+license: MIT-0
 metadata:
   repository: https://github.com/its-How/aha-orch
+  version: "1.0.0"
 ---
 
 ## What This Skill Activates
@@ -24,7 +26,7 @@ To deactivate this skill, stop applying the orchestration framework. If the runt
 
 ## Reference
 
-- Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for runtime detection, capability discovery fields, orchestration, transparency, re-orchestration, out-of-session, and cost awareness.
+- Read `./references/capability-orchestration.md` before applying orchestration logic. It is the source of truth for runtime detection, capability discovery fields, orchestration, transparency, re-orchestration, out-of-session, and cost awareness.
 - If aha-codex-omx or aha-opencode-omo is available and matches the active runtime, prefer that runtime-specific skill instead.
 
 ## Source & Upgrade

@@ -1,8 +1,11 @@
 ---
 name: aha-opencode-omo
 description: "OpenCode+OMO optimized capability orchestration skill. Use this when in OpenCode with OMO installed. Activates full delegation mode with OMO-specific capability discovery and task-driven orchestration."
+license: MIT-0
+compatibility: "OpenCode with OMO installed"
 metadata:
   repository: https://github.com/its-How/aha-orch
+  version: "1.0.0"
 ---
 
 # aha-opencode-omo
@@ -30,7 +33,7 @@ Run discovery on every orchestration pass. Capability surfaces change across ses
 2. **Secondary scan**: use `librarian` to query installed skills, MCPs, commands, validators, and native subagent surfaces
 3. **Permission envelope**: determine read-only vs write, external-write, network, approval policy, and destructive-action limits
 
-See `./capability-orchestration.md` for the 7-field discovery schema.
+See `./references/capability-orchestration.md` for the 7-field discovery schema.
 
 If discovery fails, transparently tell the user, fall back to built-in reference knowledge, mark it as possibly outdated, and invite the user to provide current capability information. Do not overclaim actual availability.
 
@@ -46,7 +49,7 @@ To deactivate: stop using OMO-specific capabilities and re-orchestrate to native
 
 ## Reference
 
-- Read `./capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.
+- Read `./references/capability-orchestration.md` before applying orchestration logic. It is the source of truth for orchestration steps, transparency, re-orchestration, out-of-session, cost awareness, and the 7-field discovery schema.
 
 ## Source & Upgrade
 

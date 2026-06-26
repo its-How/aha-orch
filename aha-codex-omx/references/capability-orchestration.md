@@ -88,6 +88,22 @@ Initial orchestration must be disclosed to the user before meaningful execution 
 
 When the current session is not the right container for the task, the agent may recommend an Out-of-Session path instead of forcing execution into a poor context.
 
+### Orchestration vs Execution Role Separation
+
+The orchestration decision role and the execution action role are distinct and must not be fused. Separating them prevents silent re-planning, conflates capability activation with outcome success, and keeps the capability route accountable to a disclosed plan.
+
+The orchestration decision role owns capability route selection, goal decomposition, granularity judgment, confirmation-trigger judgment, and gap-triggered re-orchestration. Its output is a disclosed capability route plus a validation path, not a tool call.
+
+The execution action role owns carrying out the selected route unit by unit, preserving hard safety boundaries, and producing verification evidence per unit. Its output is task outcome evidence, not a re-plan.
+
+Role separation rules:
+
+- The agent must not silently switch from the execution action role back to the orchestration decision role without a disclosed gap trigger. Re-orchestration is an orchestration decision role act and must be announced before it changes the route.
+- The agent must not treat an execution action role success (a tool ran, a file was written, a surface replied) as an orchestration decision role success (the task outcome is met). Capability activation is not outcome evidence.
+- While acting in the execution action role, the agent should follow the route chosen in the orchestration decision role and avoid mid-unit re-planning unless a gap appears.
+- While acting in the orchestration decision role, the agent should disclose the route and validation path before handing control to the execution action role.
+- A single agent may hold both roles across time, but at any given decision point it must be clear which role is acting, and any role switch must be transparent.
+
 ### 4. Execution
 
 Execute through the selected capability route with unit-level verification.
@@ -163,7 +179,14 @@ Transparency must include:
 - User guidance: what the user can request if they want more parallelism, less autonomy, a different runtime container, or stricter verification.
 - Risk and confirmation: what requires secondary confirmation and which orchestration features triggered it.
 - Validation path: how execution success will be verified.
-- Compact wording: disclosures must be short; do not narrate internal reasoning; do not expose tier names by default.
+
+**verbosity:low** governs how every transparency statement is worded. Concrete constraints:
+
+- Disclosures must be at most three sentences per orchestration event.
+- Progress updates must be at most one line per execution unit.
+- No internal reasoning narration: state the chosen route and the evidence, not the deliberation that produced it.
+- No tier name exposure: tier names must not appear in user-facing text as the explanation.
+- Compact wording: keep every transparency statement short; prefer one concrete sentence over a paragraph, and never expand a disclosure into a reasoning trace.
 
 Transparency must not include tier names as the primary user-facing explanation. Say what will happen, not the tier label.
 
